@@ -87,7 +87,7 @@ if it returns nil, do not descend into CURRENT-DIR."
                          (not (member file vc-directory-exclusion-list)))))
 
 ;;;###autoload
-(defun lispgrep-find-dired (directory regexp &optional dir-filter)
+(defun lispgrep-find-name-dired (directory regexp &optional dir-filter)
   "Find files matching REGEXP in DIRECTORY.
 A Dired buffer with the results will be opened and returned.
 
@@ -103,8 +103,8 @@ minibuffer.  See `lispgrep-find-files' for the semantics of DIR-FILTER."
                (lispgrep-find-files directory regexp dir-filter))))
 
 ;;;###autoload
-(defun lispgrep-find-dired-excluding-vc (directory regexp)
-  "Like `lispgrep-find-dired', but don't descend into vc-managed dirs."
+(defun lispgrep-find-name-dired-excluding-vc (directory regexp)
+  "Like `lispgrep-find-name-dired', but don't descend into vc-managed dirs."
   (interactive (list
                 (lispgrep-read-directory-name)
                 (lispgrep-read-file-regexp)))
