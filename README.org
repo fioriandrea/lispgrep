@@ -1,0 +1,29 @@
+* lispgrep
+
+=lispgrep= provides file finding, text searching  and project search commands implemented in pure Emacs Lisp.
+
+It is intended for environments where external tools such as =grep= and =find= may be unavailable or unreliable.
+
+Search results are shown in an xref buffer.
+
+** Example Configuration
+
+#+begin_src elisp
+(use-package lispgrep
+  :vc (:url "https://github.com/fioriandrea/lispgrep.git"
+            :rev :newest)
+  :bind ((:map project-prefix-map
+               ("f" . lispgrep-project-find-file)
+               ("d" . lispgrep-project-find-dir)
+               ("g" . lispgrep-project-find-regexp))
+         (:map dired-mode-map
+               ("A" . lispgrep-dired-do-find-regexp)))
+  :custom
+  (lispgrep-insert-files-literally t)
+  (project-switch-commands '((lispgrep-project-find-file "Find file")
+                             (lispgrep-project-find-regexp "Find regexp")
+                             (lispgrep-project-find-dir "Find directory")
+                             (project-vc-dir "VC-Dir")
+                             (project-eshell "Eshell")
+                             (project-any-command "Other"))))
+#+end_src
